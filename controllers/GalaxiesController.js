@@ -10,7 +10,7 @@ export default class GalaxiesController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .get("/:id/stars", this.getStarsByGalaxyId)
-      .get("/:id/stars", this.getPlanetsByGalaxyId)
+      .get("/:id/stars", this.getPlanetsByStarId)
       .post("", this.create);
   }
   async getAll(req, res, next) {
@@ -37,7 +37,7 @@ export default class GalaxiesController {
       next(error);
     }
   }
-  async getPlanetsByGalaxyId() {
+  async getPlanetsByStarId(req, res, next) {
     try {
       let data = await planetsService.getPlanetsByGalaxyId(req.params.id);
       return res.send(data);
